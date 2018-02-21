@@ -5,6 +5,7 @@ public class SinglyLinkedList {
 
     LinkedListNode linkedListNode;
 
+
     protected class LinkedListNode {
 
         LinkedListNode previousNode;
@@ -17,6 +18,25 @@ public class SinglyLinkedList {
     }
 
     public void add(Object element) {
+
+        LinkedListNode currentNode = this.linkedListNode;
+
+        LinkedListNode nodeToAdd = new LinkedListNode();
+        nodeToAdd.nodeElement = element;
+
+        if (currentNode == null) {
+
+            currentNode = nodeToAdd;
+            this.linkedListNode = currentNode;
+
+        } else {
+
+            while (currentNode.nextNode != null) {
+                currentNode = currentNode.nextNode;
+            }
+            currentNode.nextNode = nodeToAdd;
+
+        }
 
     }
 
@@ -33,7 +53,18 @@ public class SinglyLinkedList {
     }
 
     public int size() {
-        return 0;
+        int counter = 1;
+
+        if (this.linkedListNode == null) {
+            return counter;
+        } else {
+            LinkedListNode currentNode = linkedListNode;
+            while (currentNode.nextNode != null) {
+                counter++;
+                currentNode = currentNode.nextNode;
+            }
+        }
+        return counter;
     }
 
     public SinglyLinkedList copy() {

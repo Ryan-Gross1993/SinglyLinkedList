@@ -31,7 +31,7 @@ public class SinglyLinkedListTest {
     @Test
     public void linkedList_add() {
 
-        Assert.assertTrue(linkedList.size() == 4);
+        Assert.assertTrue(linkedList.size() == 3);
 
     }
 
@@ -62,10 +62,11 @@ public class SinglyLinkedListTest {
     @Test
     public void linkedList_size() {
 
-        Assert.assertTrue(linkedList.size() == 1);
+        Assert.assertTrue(linkedList.size() == 3);
 
         linkedList.add(personTwo);
-        Assert.assertTrue(linkedList.size() == 2);
+
+        Assert.assertTrue(linkedList.size() == 4);
 
     }
 

@@ -5,7 +5,6 @@ public class SinglyLinkedList {
 
     LinkedListNode linkedListNode;
 
-
     protected class LinkedListNode {
 
         LinkedListNode previousNode;
@@ -26,15 +25,16 @@ public class SinglyLinkedList {
 
         if (currentNode == null) {
 
-            currentNode = nodeToAdd;
-            this.linkedListNode = currentNode;
+            this.linkedListNode = nodeToAdd;
 
         } else {
 
             while (currentNode.nextNode != null) {
                 currentNode = currentNode.nextNode;
             }
+
             currentNode.nextNode = nodeToAdd;
+            nodeToAdd.previousNode = currentNode;
 
         }
 
@@ -42,13 +42,79 @@ public class SinglyLinkedList {
 
     public void remove(int index) {
 
+        int counter = 0;
+        LinkedListNode currentNode = this.linkedListNode;
+
+        if (index == counter) {
+            if (this.size() > 1) {
+
+                currentNode = currentNode.nextNode;
+                currentNode.previousNode = null;
+
+            } else {
+
+                this.linkedListNode = null;
+            }
+
+        } else {
+
+            while (counter != index) {
+
+                if (counter == index) {
+
+                    currentNode.previousNode.nextNode = currentNode.nextNode;
+                    currentNode.nextNode.previousNode = currentNode.previousNode;
+                    return;
+
+                } else {
+
+                    counter++;
+
+                    currentNode = currentNode.nextNode;
+
+                }
+            }
+        }
     }
 
     public boolean contains(Object element) {
-        return true;
+
+        LinkedListNode currentNode = this.linkedListNode;
+
+        while (currentNode.nextNode != null) {
+
+            if (currentNode.getValue() == element) {
+                return true;
+            }
+
+            currentNode = currentNode.nextNode;
+
+        }
+
+        return false;
+
     }
 
     public int find(Object element) {
+
+        int currentIndex = 0;
+        LinkedListNode currentNode = this.linkedListNode;
+
+        if (currentNode.getValue() == element) {
+
+            return 0;
+
+        }
+
+           while (currentNode.nextNode != null) {
+
+               if (currentNode.getValue() == element) {
+                   return currentIndex;
+               }
+                   currentNode = currentNode.nextNode;
+                   currentIndex++;
+
+           }
         return -1;
     }
 
@@ -68,11 +134,32 @@ public class SinglyLinkedList {
     }
 
     public SinglyLinkedList copy() {
-        return null;
+
+        SinglyLinkedList copyOfList = new SinglyLinkedList();
+
+        for (int i = 0; i != size(); i++) {
+
+            copyOfList.add(this.get(i));
+
+        }
+
+        return copyOfList;
     }
 
     public LinkedListNode get(int index) {
-        return null;
+
+        LinkedListNode currentNode = this.linkedListNode;
+        int counter = 0;
+
+        while (currentNode.nextNode != null) {
+
+            if (counter == index) {
+                return currentNode;
+            }
+            counter++;
+            currentNode = currentNode.nextNode;
+        }
+        return currentNode;
     }
 
     public void sort() {

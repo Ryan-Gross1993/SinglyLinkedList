@@ -29,30 +29,17 @@ public class SinglyLinkedListTest {
     }
 
     @Test
-    public void add() {
+    public void linkedList_add() {
 
         Assert.assertTrue(linkedList.size() == 3);
 
     }
 
     @Test
-    public void remove_LengthGreaterThanOne() {
+    public void linkedList_remove() {
 
         linkedList.remove(0);
         Assert.assertTrue(linkedList.size() == 3);
-
-    }
-
-    @Test
-    public void remove_LengthOfOne() {
-
-        SinglyLinkedList listWithLengthOfOne = new SinglyLinkedList();
-
-        listWithLengthOfOne.add(personOne);
-        listWithLengthOfOne.remove(0);
-
-        Assert.assertTrue(listWithLengthOfOne.size() == 1);
-        Assert.assertNull(listWithLengthOfOne.linkedListNode);
 
     }
 
@@ -67,11 +54,8 @@ public class SinglyLinkedListTest {
     @Test
     public void linkedList_find() {
 
-        int shouldBeOne = linkedList.find(personTwo);
-        int shouldBeNegativeOne = linkedList.find(personFour);
-
-        Assert.assertSame(shouldBeOne, 1);
-        Assert.assertSame(shouldBeNegativeOne, -1);
+        Assert.assertTrue(linkedList.find(personTwo) == 0);
+        Assert.assertTrue(linkedList.find(personFour) == -1);
 
     }
 
@@ -91,15 +75,6 @@ public class SinglyLinkedListTest {
         linkedList.add(personTwo);
 
         SinglyLinkedList copyOfLinkedList = linkedList.copy();
-
-        Assert.assertTrue(copyOfLinkedList.size() == 4);
-
-    }
-
-    @Test
-    public void linkedList_get() {
-
-        Assert.assertTrue(linkedList.get(2).getValue() == personThree);
 
     }
 
